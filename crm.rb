@@ -92,6 +92,12 @@ class CRM
     puts @rolodex.display_all_contacts
   end
 
+  def delete_a_contact
+    puts "Please enter a contact ID."
+    id = gets.chomp.to_i
+    @rolodex.delete_contact id 
+    @rolodex.display_all_contacts
+  end
   def display_a_contact
     puts "Please enter a contact ID."
     id = gets.chomp.to_i
@@ -139,7 +145,7 @@ class CRM
     if id then 
       contact = @rolodex.find(id)
 
-      @rolodex.display_particular_contact(id)
+      puts @rolodex.display_particular_contact(id)
       puts "\n\n" 
       userdata = print_attribute_menu
       attribute_no = gets.chomp.to_i
@@ -160,7 +166,7 @@ class CRM
       val = gets.chomp
 
       @rolodex.set_attrib_value(id, msg, val)
-      @rolodex.display_particular_contact(id)
+      puts @rolodex.display_particular_contact(id)
     end
   end 
 
