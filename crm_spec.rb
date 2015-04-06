@@ -88,9 +88,8 @@ describe "CRM tests"  do
   end	
 
   it "should find info by attrib " do
-    expected = "b.rubble@paleo.org"
-    info = expected
-    expect(info).to eql expected 
+    actual = @r.display_info_by_attribute("email", "b.rubble@paleo.org")
+    expect(actual.include?("Barney Rubble")).to eql true 
   end  
 
   it "should display an attribute" do
@@ -102,6 +101,7 @@ describe "CRM tests"  do
     n = s.count("\n")
     expect(n).to eql 2 
   end
+
 end
 
 
