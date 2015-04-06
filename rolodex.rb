@@ -24,20 +24,19 @@ class Rolodex
   
   def display_all_contacts
     s = ""
-    @contacts.each do | c | 
+    @contacts.each do |c| 
       s = s + ":%18s" % c.to_s + "\n"
     end 
     s
   end
   
   def display_particular_contact id 
-    id = id.to_i
-    @contacts.each do |c|
-      if c.id == id 
-        return c.to_s
-      end
+    c = find(id.to_i)
+    if c 
+      return c.to_s
+    else
+      return nil
     end
-    nil
   end
   
   def display_info_by_attribute(keysym, val)

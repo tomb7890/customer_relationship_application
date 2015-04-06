@@ -65,7 +65,7 @@ describe "CRM tests"  do
   end
 
   it "should display a particular contact" do
-    id = 1003 
+    id = 1003
     expected = "F. Ross Johnson rossjohnson@hotmail.com Such a cool dude. 1003"
     d = @r.display_particular_contact(id)
     expect(expected).to eql d 
