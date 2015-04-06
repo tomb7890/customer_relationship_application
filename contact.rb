@@ -10,27 +10,9 @@ class Contact
     @id = id 
   end
 
-  # a getter (*get* the value of an attribute)
-  def first_name(f)
-    @first_name = f 
-  end
-
-  # a setter (*set* the value of an attribute)
-  def last_name(l)
-    @last_name = l 
-  end
-
-  # a getter (*get* the value of an attribute)
-  def email(e)
-    @email = e 
-  end
-
-  # a setter (*set* the value of an attribute)
-  def note(n)
-    @note = n
-  end
-
-  def display
-    s = "#{@first_name} #{@last_name} #{@email} #{@note}"
+  def to_s
+    s = "#{@first_name} #{@last_name} #{@email} #{@note}" 
+    s = s +  " #{id}"
+    s
   end
 end
