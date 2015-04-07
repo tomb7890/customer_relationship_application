@@ -11,8 +11,6 @@ class Contact
   end
 
   def to_s
-    s = "#{@first_name} #{@last_name} #{@email} #{@note}" 
-    s = s +  " #{id}"
-    s
+    "#{@first_name} #{@last_name} #{@email} #{@note} #{id}"
   end
 end
