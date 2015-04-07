@@ -72,12 +72,7 @@ describe "CRM tests"  do
   end
 
   it "should delete a particular contact" do 
-    # first verify we can find a record 
-    id = 1003 
-    expected = "F. Ross Johnson rossjohnson@hotmail.com Such a cool dude. 1003"
-    d = @r.display_particular_contact(id)
-    expect(expected).to eql d 
-
+    id = 1003
     expect(@r.size).to eql 5
     @r.delete_contact(id) 
     expect(@r.size).to eql 4
