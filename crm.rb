@@ -2,52 +2,8 @@ require_relative "contact"
 require_relative "rolodex"
 
 class CRM
-
-  def initialize(name)
-  @rolodex = Rolodex.new
-    data = [
-
-            {
-              first_name: "Frederick",
-              last_name: "Flintstone",
-              email: "fredflintstone@paleo.org",
-              note: "Willlllllllllllllllllllllllllmaaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!!."
-            },
-
-            {
-              first_name: "Barney",
-              last_name: "Rubble",
-              email: "b.rubble@paleo.org",
-              note: "stuff"
-            },
-
-            {
-              first_name: "F. Ross",
-              last_name: "Johnson",
-              email: "rossjohnson@hotmail.com",
-              note: "Such a cool dude."
-            },
-            {
-              first_name: "Adrian",
-              last_name: "Carton de Wiart",
-              email: "adrianwiart@gmail.com",
-              note: "Even cooler."
-            }
-           ]
-
-    data.each do |d|
-      @rolodex.add d[:first_name], d[:last_name], d[:email], d[:note] 
-    end
-  end
-
-# a getter (*get* the value of an attribute)
-  def email
-    @email
-  end
-
-  # a setter (*set* the value of an attribute)
-  def note(note)
-    @note = note
+  def initialize
+    @rolodex = Rolodex.new
   end
 
   def main_menu
@@ -98,14 +54,15 @@ class CRM
     @rolodex.delete_contact id 
     @rolodex.display_all_contacts
   end
+
   def display_a_contact
     puts "Please enter a contact ID."
     id = gets.chomp.to_i
     puts @rolodex.display_particular_contact(id)
   end
 
-  def self.run(name)
-    crm = CRM.new(name)
+  def self.run()
+    crm = CRM.new()
     crm.main_menu
   end
 
@@ -180,4 +137,4 @@ class CRM
   end
 end
 
-CRM.run("boo")
+CRM.run
