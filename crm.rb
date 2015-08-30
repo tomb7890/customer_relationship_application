@@ -1,4 +1,4 @@
-require_relative "contact"
+require_relative "connection"
 require_relative "rolodex"
 
 class CRM
@@ -8,7 +8,7 @@ class CRM
 
   def main_menu
     user_selected = 0
-    while user_selected != 6  
+    while user_selected != 6
       print_main_menu
       user_selected = gets.to_i
       call_option(user_selected)
@@ -16,7 +16,7 @@ class CRM
   end
 
   def print_main_menu
-    puts "[0] Display a contact" 
+    puts "[0] Display a contact"
     puts "[1] Add a new contact"
     puts "[2] Modify an existing contact"
     puts "[3] Delete a contact"
@@ -26,32 +26,32 @@ class CRM
     puts "Enter a number: "
   end
 
-  def print_attribute_menu 
+  def print_attribute_menu
     puts "[1] First name"
-    puts "[2] Last name" 
+    puts "[2] Last name"
     puts "[3] Email"
     puts "[4] Note"
     puts "Enter a number, or 0 (zero) to cancel. "
   end
 
   def call_option(user_selected)
-    display_a_contact if user_selected == 0 
-    add_new_contact if user_selected == 1
+    display_a_contact       if user_selected == 0
+    add_new_contact         if user_selected == 1
     modify_existing_contact if user_selected == 2
-    delete_a_contact if user_selected == 3 
-    display_all_contacts if user_selected == 4 
-    display_an_attribute if user_selected == 5 
-    exit if user_selected == 6 
+    delete_a_contact        if user_selected == 3
+    display_all_contacts    if user_selected == 4
+    display_an_attribute    if user_selected == 5
+    exit                    if user_selected == 6
   end
 
   def display_all_contacts
-    puts @rolodex.display_all_contacts
+    @rolodex.display_all_contacts
   end
 
   def delete_a_contact
     puts "Please enter a contact ID."
     id = gets.chomp.to_i
-    @rolodex.delete_contact id 
+    @rolodex.delete_contact id
     @rolodex.display_all_contacts
   end
 
@@ -68,9 +68,9 @@ class CRM
 
   def get_contact_info_from_user
     userdata = []
-    puts "Please enter first name for new contact." 
+    puts "Please enter first name for new contact."
     first = gets.chomp()
-    puts "Please enter last name" 
+    puts "Please enter last name"
     last = gets.chomp()
     puts "Please enter email for new contact."
     email = gets.chomp()
@@ -87,45 +87,44 @@ class CRM
     contact = @rolodex.add(userdata[0], userdata[1], userdata[2], userdata[3])
   end
 
-  def get_user_id 
-    puts "Please enter an id for a contact to modify." 
+  def get_user_id
+    puts "Please enter an id for a contact to modify."
     id=gets.chomp.to_i
     puts "Modify user #{id}? (Y/N)"
     confirm = gets.chomp
     if confirm[0] == 'Y' or confirm[0] == 'y' then
       return id
-    end 
+    end
   end
 
   def modify_existing_contact
-    id = get_user_id 
-    if id then 
-      contact = @rolodex.find(id)
-
+    id = get_user_id
+    if id then
       puts @rolodex.display_particular_contact(id)
-      puts "\n\n" 
+      puts "\n\n"
       userdata = print_attribute_menu
       attribute_no = gets.chomp.to_i
 
-      msg = ""
+      attrib_name = ""
       case attribute_no
       when 1
-        msg = "first_name"
+        attrib_name = "first_name"
       when 2
-        msg = "last_name"
+        attrib_name = "last_name"
       when 3
-        msg = "email"
+        attrib_name = "email"
       when 4
-        msg = "note"
+        attrib_name = "note"
       end
 
-      puts "Please enter an updated value for #{msg}"
-      val = gets.chomp
+      puts "Please enter an updated value for #{attrib_name}"
+      attrib_val = gets.chomp
 
-      @rolodex.set_attrib_value(id, msg, val)
+      # @rolodex.set_attrib_value(id, attrib_no, attrib_val)
+      @rolodex.modify_contact(id, attribute_no, attrib_val)
       puts @rolodex.display_particular_contact(id)
     end
-  end 
+  end
 
   def display_an_attribute
     puts "Please enter an attribute"
