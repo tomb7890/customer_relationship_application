@@ -16,4 +16,10 @@ namespace :db do
     puts "Attempting to seed data..."
     ruby 'seed.rb'
   end
+
+  desc "clean database"
+  task :clean do
+    puts "Attempting to clean database..."
+    ruby 'seed.rb clean'
+  end
 end
