@@ -61,10 +61,6 @@ class CRM
     puts @rolodex.display_particular_contact(id)
   end
 
-  def self.run()
-    crm = CRM.new()
-    crm.main_menu
-  end
 
   def get_contact_info_from_user
     userdata = []
@@ -135,5 +131,3 @@ class CRM
     puts @rolodex.display_info_by_attribute(key, val)
   end
 end
-
-CRM.run
