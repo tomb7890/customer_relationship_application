@@ -1,30 +1,30 @@
 ff:
-  first_name: "Frederick",
-  last_name: "Flintstone",
-  email: "fredflintstone@paleo.org",
+  first_name: "Frederick"
+  last_name: "Flintstone"
+  email: "fredflintstone@paleo.org"
   note: "Wilmaaaaaaaaaaaa!!!!!!!"
 
 br:
-  first_name: "Barney",
-  last_name: "Rubble",
-  email: "b.rubble@paleo.org",
+  first_name: "Barney"
+  last_name: "Rubble"
+  email: "b.rubble@paleo.org"
   note: "stuff"
 
 frj:
-  first_name: "F. Ross",
-  last_name: "Johnson",
-  email: "rossjohnson@hotmail.com",
+  first_name: "F. Ross"
+  last_name: "Johnson"
+  email: "rossjohnson@hotmail.com"
   note: "Such a cool dude."
 
 
 dsj:
-  first_name: "David S.",
-  last_name: "Johnson",
-  email: "david.s.johnson@gmail.com",
+  first_name: "David S."
+  last_name: "Johnson"
+  email: "david.s.johnson@gmail.com"
   note: "Foo bar baz."
 
 fcdw:
-  first_name: "Frederick",
-  last_name: "Carton de Wiart",
-  email: "adrianwiart@gmail.com",
+  first_name: "Frederick"
+  last_name: "Carton de Wiart"
+  email: "adrianwiart@gmail.com"
   note: "Even cooler."
