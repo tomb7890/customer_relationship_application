@@ -1,5 +1,9 @@
 class Contact < ActiveRecord::Base
   def to_s
+    "#{first_name} #{last_name} #{email} #{notes} #{id}"
+  end
+
+  def display
     str = <<-HERE
     First name: #{first_name}
     Last name: #{last_name}
