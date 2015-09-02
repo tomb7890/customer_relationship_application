@@ -15,7 +15,7 @@ describe Contact do
     it "returns the contact's details as a string" do
       c = Contact.last
       expected = c.to_s
-      expect(expected).to eq "Frederick Carton de Wiart adrianwiart@gmail.com Even cooler. 97"
+      expect(expected).to eq "Frederick Carton de Wiart adrianwiart@gmail.com Even cooler."
     end
   end
 end
