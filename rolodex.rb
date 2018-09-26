@@ -38,12 +38,14 @@ class Rolodex
   end
 
   def display_particular_contact id
+    s = ''
     begin
       contact = Contact.find(id)
-      puts contact.display
+      s = contact.display
     rescue ActiveRecord::RecordNotFound
-      puts "Record #{id} not found"
+      s = "Record #{id} not found"
     end
+    s
   end
 
   def display_info_by_attribute(keysym, val)
