@@ -1,3 +1,6 @@
+require_relative("./schema.rb")
+require_relative("./seed.rb")
+
 desc "Run tags for Emacs users"
 task :tags do
   puts "Running tags"
@@ -28,24 +31,19 @@ task :test_rspec do
   sh 'RAILS_ENV=test rspec'
 end
 
-
-
 namespace :db do
   desc "Run database schema file"
   task :schema do
-    puts "Running schema ..."
-    ruby 'schema.rb'
+    load_schema_file
   end
 
   desc "Run seed file to populate database"
   task :seed do
-    puts "Attempting to seed data..."
-    ruby 'seed.rb'
+    seed_database
   end
 
-  desc "clean database"
+  desc "Clean database"
   task :clean do
-    puts "Attempting to clean database..."
-    ruby 'seed.rb clean'
+    clean_database
   end
 end
