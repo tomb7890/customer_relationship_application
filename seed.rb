@@ -1,13 +1,12 @@
-require_relative "connection"
-require_relative "contact"
-require "faker"
+require_relative 'connection'
+require_relative 'contact'
+require 'faker'
 
+def clean_database
+  Contact.delete_all
+end
 
-if ARGV.include?('clean')
-  Contact.delete_all
-else
-  # Seed data
-  Contact.delete_all
+def seed_database
   5.times do
     Contact.create!(
       first_name: Faker::Name.first_name,
