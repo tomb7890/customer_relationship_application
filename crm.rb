@@ -45,7 +45,7 @@ class CRM
   end
 
   def display_all_contacts
-    @rolodex.display_all_contacts
+    puts @rolodex.display_all_contacts
   end
 
   def delete_a_contact

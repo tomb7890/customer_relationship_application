@@ -27,9 +27,13 @@ class Rolodex
 
   def display_all_contacts
     all_contacts=Contact.all
-    puts "Rolodex is empty" if all_contacts.empty?
-    all_contacts.each do |c|
-      puts c.display
+    s=""
+    if all_contacts.empty?
+      s = "Rolodex is empty"
+    else
+      all_contacts.each do |c|
+        s = s + c.display
+      end
     end
   end
 
