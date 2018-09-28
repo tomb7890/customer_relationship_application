@@ -5,9 +5,6 @@ class Rolodex
     @contacts.length
   end
 
-  def initialize
-  end
-
   def add(f, l, e, n )
     Contact.create(first_name: f, last_name: l, email: e, notes: n )
   end
