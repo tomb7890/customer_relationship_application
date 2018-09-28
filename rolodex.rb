@@ -1,9 +1,6 @@
 require_relative 'contact'
 
 class Rolodex
-  def size
-    @contacts.length
-  end
 
   def add(f, l, e, n )
     Contact.create(first_name: f, last_name: l, email: e, notes: n )
@@ -76,5 +73,9 @@ class Rolodex
 
   def find(contact_id)
     @contacts.find { |c| contact_id == c.id }
+  end
+
+  def size
+    Contact.all.size
   end
 end
