@@ -15,10 +15,10 @@ class Rolodex
   def modify_contact(id, attrib_no, attrib_val)
     contact = Contact.find(id)
     if contact
-      contact.first_name = attrib_val if attrib_no == 1
-      contact.last_name = attrib_val if attrib_no == 2
-      contact.email = attrib_val if attrib_no == 3
-      contact.note = attrib_val if attrib_no == 4
+      contact.first_name = attrib_val if attrib_no == Contact::Attribs::FIRST_NAME
+      contact.last_name = attrib_val if attrib_no == Contact::Attribs::LAST_NAME
+      contact.email = attrib_val if attrib_no == Contact::Attribs::EMAIL
+      contact.notes = attrib_val if attrib_no == Contact::Attribs::NOTES
       contact.save
     else
       puts "Contact not found. Please check i.d."
