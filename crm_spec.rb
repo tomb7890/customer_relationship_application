@@ -29,13 +29,6 @@ describe 'CRM tests' do
     expect(display_string).to match(/.*first name.*last name.*notes.*/mi)
   end
 
-  it "should delete a particular contact" do 
-    id = 1003
-    expect(@r.size).to eql 5
-    @r.delete_contact(id) 
-    expect(@r.size).to eql 4
-    
-    expected = nil
   it 'should modify a particular contact' do
     updated_value = "aHighlyUnlikelyLastName"
     id = Contact.last.id
@@ -50,6 +43,12 @@ describe 'CRM tests' do
     expect(result).to eql("Contact not found. Please check i.d.")
   end
 
+  it 'should delete a particular contact' do
+    id = Contact.first.id
+    expect(@r.size).to eql seed_data_amount
+    @r.delete_contact(id)
+    expect(@r.size).to eql seed_data_amount - 1
+    expected = "Record #{id} not found"
     d = @r.display_particular_contact(id)
     expect(expected).to eql d
   end
