@@ -7,16 +7,14 @@ class Rolodex
   end
 
   def modify_contact(id, attrib_no, attrib_val)
-    begin 
-      contact = Contact.find(id)
-      contact.first_name = attrib_val if attrib_no == Contact::Attribs::FIRST_NAME
-      contact.last_name = attrib_val if attrib_no == Contact::Attribs::LAST_NAME
-      contact.email = attrib_val if attrib_no == Contact::Attribs::EMAIL
-      contact.notes = attrib_val if attrib_no == Contact::Attribs::NOTES
-      contact.save
-    rescue ActiveRecord::RecordNotFound
-      "Contact not found. Please check i.d."
-    end
+    contact = Contact.find(id)
+    contact.first_name = attrib_val if attrib_no == Contact::Attribs::FIRST_NAME
+    contact.last_name = attrib_val if attrib_no == Contact::Attribs::LAST_NAME
+    contact.email = attrib_val if attrib_no == Contact::Attribs::EMAIL
+    contact.notes = attrib_val if attrib_no == Contact::Attribs::NOTES
+    contact.save
+  rescue ActiveRecord::RecordNotFound
+    "Contact not found. Please check i.d."
   end
 
   def display_all_contacts
@@ -44,18 +42,15 @@ class Rolodex
   end
 
   def display_info_by_attribute(keysym, val)
-    begin 
-      s = ''
-      results = Contact.all.select { |c| val == c.send(keysym) }
-      results.each do |r|
-        s = s +  r.to_s + "\n"
-      end
-      s = "\n\n\n"
-    rescue NoMethodError
-      s = "There was an error looking up #{keysym}."
+    s = ''
+    results = Contact.all.select { |c| val == c.send(keysym) }
+    results.each do |r|
+      s = s +  r.to_s + "\n"
     end
+    s = "\n\n\n"
+  rescue NoMethodError
+    s = "There was an error looking up #{keysym}."
   end
-
 
   def set_attrib_value(id, attrib, val)
     c = find(id)
