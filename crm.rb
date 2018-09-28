@@ -16,22 +16,22 @@ class CRM
   end
 
   def print_main_menu
-    puts "[0] Display a contact"
-    puts "[1] Add a new contact"
-    puts "[2] Modify an existing contact"
-    puts "[3] Delete a contact"
-    puts "[4] Display all the contacts"
-    puts "[5] Display an attribute"
-    puts "[6] Exit"
-    puts "Enter a number: "
+    puts '[0] Display a contact'
+    puts '[1] Add a new contact'
+    puts '[2] Modify an existing contact'
+    puts '[3] Delete a contact'
+    puts '[4] Display all the contacts'
+    puts '[5] Display an attribute'
+    puts '[6] Exit'
+    puts 'Enter a number: '
   end
 
   def print_attribute_menu
-    puts "[1] First name"
-    puts "[2] Last name"
-    puts "[3] Email"
-    puts "[4] Note"
-    puts "Enter a number, or 0 (zero) to cancel. "
+    puts '[1] First name'
+    puts '[2] Last name'
+    puts '[3] Email'
+    puts '[4] Note'
+    puts 'Enter a number, or 0 (zero) to cancel. '
   end
 
   def call_option(user_selected)
