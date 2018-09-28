@@ -14,14 +14,14 @@ class Rolodex
     contact.notes = attrib_val if attrib_no == Contact::Attribs::NOTES
     contact.save
   rescue ActiveRecord::RecordNotFound
-    "Contact not found. Please check i.d."
+    'Contact not found. Please check i.d.'
   end
 
   def display_all_contacts
     all_contacts=Contact.all
     s=[]
     if all_contacts.empty?
-      s << "Rolodex is empty"
+      s << 'Rolodex is empty'
     else
       all_contacts.each do |c|
         s << c.display
