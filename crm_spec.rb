@@ -11,12 +11,10 @@ RSpec.configure do |config|
   end
 end
 
-  it "should verify basic testing" do
-    expect("5 5").to eql "5 5"
-  end
+describe 'CRM tests' do
   
-  it "should initialize the application" do 
-    @r
+  before(:all) do
+    @r = Rolodex.new
   end
 
   it "should display_all_contacts" do 
