@@ -23,11 +23,10 @@ describe 'CRM tests' do
     expect(actual).to eql expected
   end
 
-  it "should display a particular contact" do
-    id = 1003
-    expected = "F. Ross Johnson rossjohnson@hotmail.com Such a cool dude. 1003"
-    d = @r.display_particular_contact(id)
-    expect(expected).to eql d 
+  it 'should display a particular contact' do
+    id = Contact.last.id
+    display_string = @r.display_particular_contact(id)
+    expect(display_string).to match(/.*first name.*last name.*notes.*/mi)
   end
 
   it "should delete a particular contact" do 
