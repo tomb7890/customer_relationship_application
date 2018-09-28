@@ -53,12 +53,7 @@ describe 'CRM tests' do
 
     d = @r.display_particular_contact(id)
     expect(expected).to eql d
-  end	
-
-  it "should find info by attrib " do
-    actual = @r.display_info_by_attribute("email", "b.rubble@paleo.org")
-    expect(actual.include?("Barney Rubble")).to eql true 
-  end  
+  end
 
   it "should display an attribute" do
     key =  "first_name"
@@ -70,7 +65,12 @@ describe 'CRM tests' do
     expect(n).to eql 2 
   end
 
+  it 'should print an error on failure' do
+    key =  "bogus"
+    val = "Frederick"
+    expected = "There was an error looking up #{key}."
+    actual = @r.display_info_by_attribute(key, val)
+    expect(expected).to eql actual 
+  end
 end
-
-
 

@@ -47,14 +47,18 @@ class Rolodex
   end
 
   def display_info_by_attribute(keysym, val)
-    # "display_info_by_attribute"
-    s = ""
-    results = @contacts.select { |c| val == c.send(keysym) }
-    results.each do | r |
+    begin 
+      s = ''
+      results = Contact.all.select { |c| val == c.send(keysym) }
+      results.each do |r|
         s = s +  r.to_s + "\n"
+      end
+      s = "\n\n\n"
+    rescue NoMethodError
+      s = "There was an error looking up #{keysym}."
     end
-    s
   end
+
 
   def set_attrib_value(id, attrib, val)
     c = find(id)
