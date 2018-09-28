@@ -17,10 +17,9 @@ describe 'CRM tests' do
     @r = Rolodex.new
   end
 
-  it "should display_all_contacts" do 
-    stuff= @r.display_all_contacts
-    expected = @testdata.length 
-    actual = stuff.count("\n")
+  it 'should display_all_contacts' do
+    actual = @r.display_all_contacts.size
+    expected = seed_data_amount
     expect(actual).to eql expected
   end
 

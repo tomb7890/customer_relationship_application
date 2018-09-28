@@ -45,7 +45,7 @@ class CRM
   end
 
   def display_all_contacts
-    puts @rolodex.display_all_contacts
+    puts @rolodex.display_all_contacts.join("\n")
   end
 
   def delete_a_contact
@@ -60,7 +60,6 @@ class CRM
     id = gets.chomp.to_i
     puts @rolodex.display_particular_contact(id)
   end
-
 
   def get_contact_info_from_user
     userdata = []
@@ -116,7 +115,6 @@ class CRM
       puts "Please enter an updated value for #{attrib_name}"
       attrib_val = gets.chomp
 
-      # @rolodex.set_attrib_value(id, attrib_no, attrib_val)
       @rolodex.modify_contact(id, attribute_no, attrib_val)
       puts @rolodex.display_particular_contact(id)
     end
