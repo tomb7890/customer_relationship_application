@@ -38,6 +38,20 @@ describe 'CRM tests' do
     expect(@r.size).to eql 4
     
     expected = nil
+  it 'should modify a particular contact' do
+    updated_value = "aHighlyUnlikelyLastName"
+    id = Contact.last.id
+    @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
+    expect( Contact.last.last_name).to eql(updated_value)
+  end
+
+  it 'should gracefully handle bad ids' do
+    updated_value = "yetAnotherHighlyUnlikelyLastName"
+    id = -999
+    result = @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
+    expect(result).to eql("Contact not found. Please check i.d.")
+  end
+
     d = @r.display_particular_contact(id)
     expect(expected).to eql d
   end	
