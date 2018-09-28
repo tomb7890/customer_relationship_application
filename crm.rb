@@ -103,13 +103,13 @@ class CRM
 
       attrib_name = ""
       case attribute_no
-      when 1
+      when Contact::Attribs::FIRST_NAME 
         attrib_name = "first_name"
-      when 2
+      when Contact::Attribs::LAST_NAME 
         attrib_name = "last_name"
-      when 3
+      when Contact::Attribs::EMAIL
         attrib_name = "email"
-      when 4
+      when Contact::Attribs::NOTES
         attrib_name = "note"
       end
 
