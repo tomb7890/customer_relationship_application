@@ -18,7 +18,7 @@ class Rolodex
   end
 
   def display_all_contacts
-    all_contacts=Contact.all
+    all_contacts = Contact.all
     s=[]
     if all_contacts.empty?
       s << 'Rolodex is empty'
@@ -42,14 +42,12 @@ class Rolodex
   end
 
   def display_info_by_attribute(keysym, val)
-    s = ''
+    s = []
     results = Contact.all.select { |c| val == c.send(keysym) }
-    results.each do |r|
-      s = s +  r.to_s + "\n"
+    results.each do |c2|
+      s << c2.to_s
     end
-    s = "\n\n\n"
-  rescue NoMethodError
-    s = "There was an error looking up #{keysym}."
+    s
   end
 
   def set_attrib_value(id, attrib, val)
