@@ -12,7 +12,7 @@ RSpec.configure do |config|
 end
 
 describe 'CRM tests' do
-  
+
   before(:all) do
     @r = Rolodex.new
   end
@@ -30,17 +30,17 @@ describe 'CRM tests' do
   end
 
   it 'should modify a particular contact' do
-    updated_value = "aHighlyUnlikelyLastName"
+    updated_value = 'aHighlyUnlikelyLastName'
     id = Contact.last.id
     @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
     expect( Contact.last.last_name).to eql(updated_value)
   end
 
   it 'should gracefully handle bad ids' do
-    updated_value = "yetAnotherHighlyUnlikelyLastName"
+    updated_value = 'yetAnotherHighlyUnlikelyLastName'
     id = -999
     result = @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
-    expect(result).to eql("Contact not found. Please check i.d.")
+    expect(result).to eql('Contact not found. Please check i.d.')
   end
 
   it 'should delete a particular contact' do
@@ -53,22 +53,26 @@ describe 'CRM tests' do
     expect(expected).to eql d
   end
 
-  it "should display an attribute" do
-    key =  "first_name"
-    val = "Frederick"
-    s = @r.display_info_by_attribute(key, val)
-
-    # There should be two records with the first name Fred 
-    n = s.count("\n")
-    expect(n).to eql 2 
+  it 'should display an attribute' do
+    aContact = Contact.last
+    val = aContact.first_name
+    expected = aContact.to_s
+    key =  'first_name'
+    actual = @r.display_info_by_attribute(key, val)
+    expect(expected).to eql (actual.first )
   end
 
-  it 'should print an error on failure' do
-    key =  "bogus"
-    val = "Frederick"
-    expected = "There was an error looking up #{key}."
-    actual = @r.display_info_by_attribute(key, val)
-    expect(expected).to eql actual 
+  it 'should raise an error when using bad attribute name' do
+    key = 'bogus'
+    val = ''
+    expect{
+      @r.display_info_by_attribute(key, val)
+    }.to raise_error(NoMethodError)
+  end
+
+  it 'should return an empty array when no matches ' do
+    key = 'first_name'
+    val = '9999999999999999'
+    expect(@r.display_info_by_attribute(key, val)).to eql []
   end
 end
-
