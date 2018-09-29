@@ -1,5 +1,5 @@
-require_relative "connection"
-require_relative "rolodex"
+require_relative 'connection'
+require_relative 'rolodex'
 
 class CRM
   def initialize
@@ -49,27 +49,27 @@ class CRM
   end
 
   def delete_a_contact
-    puts "Please enter a contact ID."
+    puts 'Please enter a contact ID.'
     id = gets.chomp.to_i
     @rolodex.delete_contact id
     @rolodex.display_all_contacts
   end
 
   def display_a_contact
-    puts "Please enter a contact ID."
+    puts 'Please enter a contact ID.'
     id = gets.chomp.to_i
     puts @rolodex.display_particular_contact(id)
   end
 
   def get_contact_info_from_user
     userdata = []
-    puts "Please enter first name for new contact."
+    puts 'Please enter first name for new contact.'
     first = gets.chomp()
-    puts "Please enter last name"
+    puts 'Please enter last name'
     last = gets.chomp()
-    puts "Please enter email for new contact."
+    puts 'Please enter email for new contact.'
     email = gets.chomp()
-    puts "Please enter notes for your new contact. "
+    puts 'Please enter notes for your new contact. '
     notes = gets.chomp()
     userdata.push(first)
     userdata.push(last)
@@ -83,7 +83,7 @@ class CRM
   end
 
   def get_user_id
-    puts "Please enter an id for a contact to modify."
+    puts 'Please enter an id for a contact to modify.'
     id=gets.chomp.to_i
     puts "Modify user #{id}? (Y/N)"
     confirm = gets.chomp
@@ -100,16 +100,16 @@ class CRM
       userdata = print_attribute_menu
       attribute_no = gets.chomp.to_i
 
-      attrib_name = ""
+      attrib_name = ''
       case attribute_no
       when Contact::Attribs::FIRST_NAME 
-        attrib_name = "first_name"
+        attrib_name = 'first_name'
       when Contact::Attribs::LAST_NAME 
-        attrib_name = "last_name"
+        attrib_name = 'last_name'
       when Contact::Attribs::EMAIL
-        attrib_name = "email"
+        attrib_name = 'email'
       when Contact::Attribs::NOTES
-        attrib_name = "note"
+        attrib_name = 'note'
       end
 
       puts "Please enter an updated value for #{attrib_name}"
@@ -121,11 +121,11 @@ class CRM
   end
 
   def display_an_attribute
-    puts "Please enter an attribute"
+    puts 'Please enter an attribute'
     key = gets.chomp
-    puts "Please enter a value"
+    puts 'Please enter a value'
     val = gets.chomp
     keysym = key.to_sym
-    puts @rolodex.display_info_by_attribute(key, val)
+    puts @rolodex.display_info_by_attribute(keysym, val)
   end
 end
