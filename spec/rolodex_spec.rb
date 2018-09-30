@@ -29,18 +29,20 @@ describe Rolodex do
     expect(display_string).to match(/.*first name.*last name.*notes.*/mi)
   end
 
-  it 'should modify a particular contact' do
-    updated_value = 'aHighlyUnlikelyLastName'
-    id = Contact.last.id
-    @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
-    expect( Contact.last.last_name).to eql(updated_value)
-  end
+  describe '#modify_contact' do
+    it 'should modify a particular contact' do
+      updated_value = 'aHighlyUnlikelyLastName'
+      id = Contact.last.id
+      @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
+      expect( Contact.last.last_name).to eql(updated_value)
+    end
 
-  it 'should gracefully handle bad ids' do
-    updated_value = 'yetAnotherHighlyUnlikelyLastName'
-    id = -999
-    result = @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
-    expect(result).to eql('Contact not found. Please check i.d.')
+    it 'should gracefully handle bad ids' do
+      updated_value = 'yetAnotherHighlyUnlikelyLastName'
+      id = -999
+      result = @r.modify_contact(id, Contact::Attribs::LAST_NAME, updated_value)
+      expect(result).to eql('Contact not found. Please check i.d.')
+    end
   end
 
   describe '#delete_contact' do
@@ -57,26 +59,30 @@ describe Rolodex do
     end
   end
 
-  it 'should display an attribute' do
-    aContact = Contact.last
-    val = aContact.first_name
-    expected = aContact.to_s
-    key =  'first_name'
-    actual = @r.display_info_by_attribute(key, val)
-    expect(expected).to eql (actual.first )
+  describe '#display_info_by_attribute' do
+    
+    it 'should display an attribute' do
+      aContact = Contact.last
+      val = aContact.first_name
+      expected = aContact.to_s
+      key =  'first_name'
+      actual = @r.display_info_by_attribute(key, val)
+      expect(expected).to eql (actual.first)
+    end
+
+    it 'should raise an error when using bad attribute name' do
+      key = 'bogus'
+      val = ''
+      expect{
+        @r.display_info_by_attribute(key, val)
+      }.to raise_error(NoMethodError)
+    end
+
+    it 'should return an empty array when no matches ' do
+      key = 'first_name'
+      val = ''
+      expect(@r.display_info_by_attribute(key, val)).to eql []
+    end
   end
 
-  it 'should raise an error when using bad attribute name' do
-    key = 'bogus'
-    val = ''
-    expect{
-      @r.display_info_by_attribute(key, val)
-    }.to raise_error(NoMethodError)
-  end
-
-  it 'should return an empty array when no matches ' do
-    key = 'first_name'
-    val = '9999999999999999'
-    expect(@r.display_info_by_attribute(key, val)).to eql []
-  end
 end
