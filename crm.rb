@@ -53,6 +53,8 @@ class CRM
     id = gets.chomp.to_i
     @rolodex.delete_contact id
     @rolodex.display_all_contacts
+  rescue ActiveRecord::RecordNotFound => e
+    puts e 
   end
 
   def display_a_contact

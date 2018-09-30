@@ -43,14 +43,18 @@ describe 'CRM tests' do
     expect(result).to eql('Contact not found. Please check i.d.')
   end
 
-  it 'should delete a particular contact' do
-    id = Contact.first.id
-    expect(@r.size).to eql seed_data_amount
-    @r.delete_contact(id)
-    expect(@r.size).to eql seed_data_amount - 1
-    expected = "Record #{id} not found"
-    d = @r.display_particular_contact(id)
-    expect(expected).to eql d
+  describe '#delete_contact' do
+    it 'should delete a particular contact' do
+      id = Contact.first.id
+      expect(@r.size).to eql seed_data_amount
+      @r.delete_contact(id)
+      expect(@r.size).to eql seed_data_amount - 1
+    end
+    it 'should raise an error on failure' do
+      id = -1 
+      expect{@r.delete_contact(id)
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 
   it 'should display an attribute' do

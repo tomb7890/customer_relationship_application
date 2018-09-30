@@ -56,12 +56,8 @@ class Rolodex
   end
 
   def delete_contact id
-    begin
-      record = Contact.find(id)
-      record.destroy
-    rescue ActiveRecord::RecordNotFound
-      puts "Record #{id} not found"
-    end
+    record = Contact.find(id)
+    record.destroy
   end
 
   def find(contact_id)
